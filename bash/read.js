@@ -12,17 +12,16 @@ var readdir = function(dirname) {
             // TODO, handle directory
             var filename = dirname + "/" + file;
             if (!filename.endsWith('.txt')) return;
-            fs.readFile(filename, 'utf8', function(err, cnt) {})
+            fs.readFile(filename, 'utf8', parseFile);
         })
     })
 }
 
-var parseFile = function() {
+var parseFile = function(err, cnt) {
     //TODO fix later
     if (err) {
         throw err
     }
-    console.log(filename, cnt.length);
     var lines = cnt.split(/\r\n/);
     console.log(lines.length);
     var interviews = [];
@@ -51,7 +50,6 @@ var parseFile = function() {
     });
     if (interview !== undefined) interviews.push(interview);
     console.log('count of interview', interviews.length, interviews[0]);
-
 }
 
 readdir(__dirname);
