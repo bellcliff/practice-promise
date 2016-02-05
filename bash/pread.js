@@ -1,8 +1,6 @@
 var fs = require('fs');
 var path = require('path');
 var Q = require('q');
-var MongoClient = require('mongodb').MongoClient;
-var parseFile = require('./pparse').parseFile;
 
 var readfile = function(dirname, file) {
     // TODO, handle directory
@@ -30,24 +28,8 @@ var readdir = function(dirname) {
     return deferred.promise;
 }
 
-// as the / is the dir separator for unix, 
-// if we want support running on windows,
-// we choose path.join
-readdir(path.join(__dirname, 'data'))
-    .spread(readfiles)
-    .then(function(cnts){
-        var ps = [];
-        cnts.forEach(function(cnt){
-            ps.push(parseFile(cnt))
-        });
-        return Q.all(ps);
-    })
-    .then(function(results){
-        return MongoClient.connect()
-            .then(function(db){
-                return db.collection('interview').insertMany(results);
-            });
-    })
-    .then(console.log.bind(console))
-    .catch(console.log.bind(console));
-
+module.exports = {
+    readdir: readdir,
+    readfiles: readfiles,
+    readfile: readfile
+}
