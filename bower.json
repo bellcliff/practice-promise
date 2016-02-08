@@ -1,0 +1,25 @@
+{
+  "name": "practice-promise",
+  "description": "",
+  "main": "",
+  "authors": [
+    "bellcliff <bell.cliff@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/bellcliff/practice-promise",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "angular": "~1.5.0",
+    "highcharts": "~4.2.3",
+    "bootstrap": "~3.3.6"
+  }
+}
